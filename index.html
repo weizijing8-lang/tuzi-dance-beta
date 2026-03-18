@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>兔子扒舞 - 内测体验官招募</title>
+  <meta name="description" content="AI 智能舞蹈拆分学习工具，逐帧扒舞，逐段练习。限量招募早期体验官！">
+  <link rel="icon" href="https://files.manuscdn.com/user_upload_by_module/session_file/310519663364574797/QjortFsJPslmYRCC.png" type="image/png">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+      background: #0a0a0f;
+      color: #fff;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Animated gradient background */
+    .bg-gradient {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: 
+        radial-gradient(ellipse at 20% 20%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 80%, rgba(236, 72, 153, 0.12) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 50%, rgba(59, 130, 246, 0.08) 0%, transparent 60%);
+      z-index: 0;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 420px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Header */
+    .header {
+      text-align: center;
+      padding: 48px 0 32px;
+    }
+
+    .logo {
+      width: 80px;
+      height: 80px;
+      border-radius: 20px;
+      margin-bottom: 16px;
+      box-shadow: 0 8px 32px rgba(139, 92, 246, 0.3);
+    }
+
+    .app-name {
+      font-size: 28px;
+      font-weight: 700;
+      background: linear-gradient(135deg, #a78bfa, #ec4899);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .app-tagline {
+      font-size: 14px;
+      color: #9ca3af;
+      margin-top: 6px;
+    }
+
+    /* Beta badge */
+    .beta-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 16px;
+      padding: 6px 16px;
+      background: linear-gradient(135deg, rgba(251, 191, 36, 0.15), rgba(245, 158, 11, 0.15));
+      border: 1px solid rgba(251, 191, 36, 0.3);
+      border-radius: 20px;
+      font-size: 13px;
+      color: #fbbf24;
+      font-weight: 500;
+    }
+
+    /* Features */
+    .features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+
+    .feature-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 20px 16px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+      transition: transform 0.2s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-2px);
+    }
+
+    .feature-icon {
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+
+    .feature-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #e5e7eb;
+    }
+
+    .feature-desc {
+      font-size: 11px;
+      color: #6b7280;
+      margin-top: 4px;
+    }
+
+    /* Steps */
+    .section-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .steps {
+      margin-bottom: 32px;
+    }
+
+    .step {
+      display: flex;
+      gap: 14px;
+      margin-bottom: 16px;
+      align-items: flex-start;
+    }
+
+    .step-num {
+      flex-shrink: 0;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #8b5cf6, #ec4899);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .step-content {
+      flex: 1;
+    }
+
+    .step-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #e5e7eb;
+    }
+
+    .step-desc {
+      font-size: 12px;
+      color: #6b7280;
+      margin-top: 2px;
+      line-height: 1.5;
+    }
+
+    /* Invite code card */
+    .invite-card {
+      background: linear-gradient(135deg, rgba(139, 92, 246, 0.12), rgba(236, 72, 153, 0.12));
+      border: 1px solid rgba(139, 92, 246, 0.25);
+      border-radius: 20px;
+      padding: 24px;
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .invite-label {
+      font-size: 13px;
+      color: #a78bfa;
+      font-weight: 500;
+      margin-bottom: 12px;
+    }
+
+    .invite-code {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: 4px;
+      background: linear-gradient(135deg, #c084fc, #f472b6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 8px;
+      user-select: all;
+    }
+
+    .invite-reward {
+      font-size: 12px;
+      color: #9ca3af;
+    }
+
+    .invite-reward strong {
+      color: #fbbf24;
+    }
+
+    .copy-btn {
+      margin-top: 12px;
+      padding: 8px 24px;
+      background: rgba(139, 92, 246, 0.2);
+      border: 1px solid rgba(139, 92, 246, 0.4);
+      border-radius: 20px;
+      color: #c084fc;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .copy-btn:active {
+      transform: scale(0.95);
+      background: rgba(139, 92, 246, 0.35);
+    }
+
+    .copy-btn.copied {
+      background: rgba(34, 197, 94, 0.2);
+      border-color: rgba(34, 197, 94, 0.4);
+      color: #4ade80;
+    }
+
+    /* Download section */
+    .download-section {
+      margin-bottom: 32px;
+    }
+
+    .download-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 12px;
+    }
+
+    .download-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .platform-icon {
+      font-size: 24px;
+    }
+
+    .platform-name {
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .platform-tag {
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 10px;
+      background: rgba(34, 197, 94, 0.15);
+      color: #4ade80;
+      margin-left: auto;
+    }
+
+    .platform-tag.coming {
+      background: rgba(251, 191, 36, 0.15);
+      color: #fbbf24;
+    }
+
+    .download-steps {
+      font-size: 12px;
+      color: #9ca3af;
+      line-height: 1.8;
+    }
+
+    .download-steps li {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .download-steps li::before {
+      content: "→ ";
+      color: #6b7280;
+    }
+
+    .download-btn {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      margin-top: 12px;
+      background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+      border: none;
+      border-radius: 12px;
+      color: #fff;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .download-btn:active {
+      transform: scale(0.98);
+      opacity: 0.9;
+    }
+
+    .download-btn.secondary {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .download-btn.disabled {
+      background: rgba(255, 255, 255, 0.05);
+      color: #6b7280;
+      cursor: not-allowed;
+    }
+
+    /* OTP hint */
+    .otp-hint {
+      background: rgba(59, 130, 246, 0.1);
+      border: 1px solid rgba(59, 130, 246, 0.2);
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 32px;
+    }
+
+    .otp-hint-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: #60a5fa;
+      margin-bottom: 6px;
+    }
+
+    .otp-hint-code {
+      font-size: 32px;
+      font-weight: 800;
+      color: #60a5fa;
+      letter-spacing: 8px;
+      text-align: center;
+      margin: 8px 0;
+    }
+
+    .otp-hint-desc {
+      font-size: 12px;
+      color: #6b7280;
+      text-align: center;
+    }
+
+    /* FAQ */
+    .faq {
+      margin-bottom: 48px;
+    }
+
+    .faq-item {
+      margin-bottom: 16px;
+    }
+
+    .faq-q {
+      font-size: 14px;
+      font-weight: 600;
+      color: #d1d5db;
+      margin-bottom: 4px;
+    }
+
+    .faq-a {
+      font-size: 12px;
+      color: #6b7280;
+      line-height: 1.6;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 24px 0 48px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .footer-text {
+      font-size: 11px;
+      color: #4b5563;
+    }
+
+    .footer-links {
+      margin-top: 8px;
+    }
+
+    .footer-links a {
+      font-size: 11px;
+      color: #6b7280;
+      text-decoration: none;
+      margin: 0 8px;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .animate {
+      animation: fadeInUp 0.6s ease-out forwards;
+      opacity: 0;
+    }
+
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.2s; }
+    .delay-3 { animation-delay: 0.3s; }
+    .delay-4 { animation-delay: 0.4s; }
+    .delay-5 { animation-delay: 0.5s; }
+  </style>
+</head>
+<body>
+  <div class="bg-gradient"></div>
+  
+  <div class="container">
+    <!-- Header -->
+    <div class="header animate">
+      <img class="logo" src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663364574797/QjortFsJPslmYRCC.png" alt="兔子扒舞">
+      <div class="app-name">兔子扒舞</div>
+      <div class="app-tagline">AI 智能舞蹈拆分学习</div>
+      <div class="beta-badge">
+        <span>⭐</span>
+        <span>早期体验官招募中</span>
+      </div>
+    </div>
+
+    <!-- Features -->
+    <div class="features animate delay-1">
+      <div class="feature-card">
+        <div class="feature-icon">🔍</div>
+        <div class="feature-title">深度扒舞</div>
+        <div class="feature-desc">200帧逐帧拆解</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">✂️</div>
+        <div class="feature-title">抠动作</div>
+        <div class="feature-desc">0.1秒精准卡点</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔄</div>
+        <div class="feature-title">分组练</div>
+        <div class="feature-desc">自由组合片段</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">▶️</div>
+        <div class="feature-title">逐段学</div>
+        <div class="feature-desc">慢放循环单个动作</div>
+      </div>
+    </div>
+
+    <!-- Invite Code -->
+    <div class="invite-card animate delay-2">
+      <div class="invite-label">🎁 专属内测邀请码</div>
+      <div class="invite-code" id="inviteCode">XIAOHONGSHU2026</div>
+      <div class="invite-reward">兑换即得 <strong>50 次免费 AI 拆舞额度</strong> + ⭐ 早期体验官身份</div>
+      <button class="copy-btn" id="copyBtn" onclick="copyCode()">复制邀请码</button>
+    </div>
+
+    <!-- Login hint -->
+    <div class="otp-hint animate delay-3">
+      <div class="otp-hint-title">📱 内测期间登录验证码</div>
+      <div class="otp-hint-code">888888</div>
+      <div class="otp-hint-desc">手机号登录时，验证码统一输入 888888</div>
+    </div>
+
+    <!-- How to use -->
+    <div class="steps animate delay-3">
+      <div class="section-title">📋 三步开始扒舞</div>
+      
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <div class="step-title">下载安装 App</div>
+          <div class="step-desc">Android 用户直接下载 APK 安装<br>iOS 用户通过 TestFlight 安装</div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <div class="step-title">手机号登录 + 输入邀请码</div>
+          <div class="step-desc">验证码输入 888888 → 设置页输入邀请码 → 获得 50 次免费额度 + 早期体验官身份</div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <div class="step-title">上传视频，AI 自动拆舞</div>
+          <div class="step-desc">从相册选一段舞蹈视频 → 点击 AI 拆分 → 逐段慢放练习</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Download -->
+    <div class="download-section animate delay-4">
+      <div class="section-title">📥 下载安装</div>
+
+      <div class="download-card">
+        <div class="download-header">
+          <span class="platform-icon">🤖</span>
+          <span class="platform-name">Android</span>
+          <span class="platform-tag">可下载</span>
+        </div>
+        <ul class="download-steps">
+          <li>点击下方按钮下载 APK 文件</li>
+          <li>打开文件，允许安装未知来源应用</li>
+          <li>安装完成后打开 App</li>
+        </ul>
+        <a class="download-btn" id="androidBtn" href="#" onclick="showAndroidTip()">
+          下载 Android 安装包
+        </a>
+      </div>
+
+      <div class="download-card">
+        <div class="download-header">
+          <span class="platform-icon">🍎</span>
+          <span class="platform-name">iOS (iPhone/iPad)</span>
+          <span class="platform-tag coming">即将开放</span>
+        </div>
+        <ul class="download-steps">
+          <li>需要先安装 Apple 官方 TestFlight App</li>
+          <li>点击下方按钮加入内测</li>
+          <li>在 TestFlight 中安装兔子扒舞</li>
+        </ul>
+        <a class="download-btn secondary" href="#" onclick="showIOSTip()">
+          加入 TestFlight 内测
+        </a>
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <div class="faq animate delay-5">
+      <div class="section-title">❓ 常见问题</div>
+
+      <div class="faq-item">
+        <div class="faq-q">Q: 内测期间收费吗？</div>
+        <div class="faq-a">A: 完全免费！输入邀请码即可获得 50 次 AI 拆舞额度，每天签到还能领额外次数。</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Q: 支持什么格式的视频？</div>
+        <div class="faq-a">A: 支持手机相册中的 MP4、MOV 等常见格式，最长 5 分钟，最大 100MB。</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Q: Android 安装提示"不安全"怎么办？</div>
+        <div class="faq-a">A: 这是因为 APK 不是从应用商店下载的，属于正常提示。点击"仍然安装"即可，我们的 App 不含任何恶意代码。</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Q: 遇到问题怎么反馈？</div>
+        <div class="faq-a">A: App 内设置页有"意见反馈"入口，也可以在小红书评论区留言，我们会及时回复。</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Q: "早期体验官"有什么特权？</div>
+        <div class="faq-a">A: 专属金色徽章、50 次免费额度、优先体验新功能、正式上线后保留身份和额度。</div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <div class="footer-text">兔子扒舞 v1.0 内测版 · 2026</div>
+      <div class="footer-links">
+        <a href="#">隐私政策</a>
+        <a href="#">用户协议</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast" style="display:none; position:fixed; bottom:100px; left:50%; transform:translateX(-50%); background:rgba(0,0,0,0.85); color:#fff; padding:10px 24px; border-radius:20px; font-size:13px; z-index:999; backdrop-filter:blur(10px); border:1px solid rgba(255,255,255,0.1);">
+  </div>
+
+  <script>
+    function copyCode() {
+      const code = document.getElementById('inviteCode').textContent;
+      const btn = document.getElementById('copyBtn');
+      
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(code).then(() => {
+          showCopied(btn);
+        }).catch(() => {
+          fallbackCopy(code, btn);
+        });
+      } else {
+        fallbackCopy(code, btn);
+      }
+    }
+
+    function fallbackCopy(text, btn) {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      showCopied(btn);
+    }
+
+    function showCopied(btn) {
+      btn.textContent = '已复制 ✓';
+      btn.classList.add('copied');
+      setTimeout(() => {
+        btn.textContent = '复制邀请码';
+        btn.classList.remove('copied');
+      }, 2000);
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      toast.textContent = msg;
+      toast.style.display = 'block';
+      setTimeout(() => { toast.style.display = 'none'; }, 3000);
+    }
+
+    function showAndroidTip() {
+      showToast('APK 下载链接即将开放，请先复制邀请码 🎁');
+    }
+
+    function showIOSTip() {
+      showToast('TestFlight 链接即将开放，请先复制邀请码 🎁');
+    }
+  </script>
+</body>
+</html>
