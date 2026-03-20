@@ -545,8 +545,7 @@
     (function() {
       var saved = localStorage.getItem('beta-lang');
       if (saved) { setLang(saved); return; }
-      var nav = navigator.language || '';
-      if (!nav.startsWith('zh')) setLang('en');
+      // Default to Chinese; only switch to English if user explicitly clicks
     })();
 
     // ─── Actions ───
