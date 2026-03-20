@@ -34,19 +34,22 @@
 
     /* Language switch */
     .lang-switch {
-      position: fixed; top: 12px; right: 12px; z-index: 100;
+      position: fixed; top: 16px; right: 16px; z-index: 100;
       display: flex; gap: 2px;
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 8px; padding: 3px;
-      backdrop-filter: blur(10px);
+      background: rgba(30,20,60,0.85);
+      border: 1px solid rgba(139,92,246,0.4);
+      border-radius: 10px; padding: 4px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.4);
     }
     .lang-btn {
-      padding: 4px 10px; border-radius: 6px; border: none;
+      padding: 6px 14px; border-radius: 8px; border: none;
       background: transparent; color: #9ca3af;
-      font-size: 12px; cursor: pointer; font-weight: 500;
+      font-size: 13px; cursor: pointer; font-weight: 600;
+      transition: all 0.2s;
     }
-    .lang-btn.active { background: rgba(139,92,246,0.6); color: #fff; }
+    .lang-btn:hover { color: #e5e7eb; }
+    .lang-btn.active { background: linear-gradient(135deg, #8b5cf6, #7c3aed); color: #fff; box-shadow: 0 2px 8px rgba(139,92,246,0.4); }
 
     /* Header */
     .header { text-align: center; padding: 48px 0 32px; }
@@ -190,11 +193,19 @@
     .delay-5 { animation-delay: 0.5s; }
 
     /* i18n hidden */
-    .i18n-en { display: none; }
-    html[lang="en"] .i18n-zh { display: none; }
-    html[lang="en"] .i18n-en { display: block; }
-    html[lang="en"] span.i18n-en,
-    html[lang="en"] div.i18n-en { display: inline; }
+    .i18n-en { display: none !important; }
+    html[lang="en"] .i18n-zh { display: none !important; }
+    html[lang="en"] .i18n-en { display: block !important; }
+    html[lang="en"] span.i18n-en { display: inline !important; }
+    html[lang="en"] div.i18n-en { display: inline !important; }
+    html[lang="en"] a.i18n-en { display: inline !important; }
+    html[lang="en"] li.i18n-en { display: list-item !important; }
+    html[lang="en"] h4.i18n-en { display: block !important; }
+    html[lang="en"] p.i18n-en { display: block !important; }
+    html[lang="en"] .i18n-zh.feature-title,
+    html[lang="en"] .i18n-zh.feature-desc { display: none !important; }
+    html[lang="en"] .i18n-en.feature-title,
+    html[lang="en"] .i18n-en.feature-desc { display: block !important; }
   </style>
 </head>
 <body>
@@ -452,10 +463,10 @@
         <span class="i18n-en">Dance Splitter v1.0 Beta · 2026</span>
       </div>
       <div class="footer-links">
-        <a href="https://rabbit-dance.up.railway.app/privacy" class="i18n-zh">隐私政策</a>
-        <a href="https://rabbit-dance.up.railway.app/privacy" class="i18n-en">Privacy</a>
-        <a href="https://rabbit-dance.up.railway.app/terms" class="i18n-zh">用户协议</a>
-        <a href="https://rabbit-dance.up.railway.app/terms" class="i18n-en">Terms</a>
+        <a href="https://rabbit-dance.up.railway.app/privacy" target="_blank" class="i18n-zh">隐私政策</a>
+        <a href="https://rabbit-dance.up.railway.app/privacy" target="_blank" class="i18n-en">Privacy</a>
+        <a href="https://rabbit-dance.up.railway.app/terms" target="_blank" class="i18n-zh">用户协议</a>
+        <a href="https://rabbit-dance.up.railway.app/terms" target="_blank" class="i18n-en">Terms</a>
       </div>
     </div>
   </div>
