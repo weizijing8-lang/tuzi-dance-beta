@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>兔子扒舞 - 内测体验官招募 | Dance Splitter Beta</title>
-  <meta name="description" content="AI 智能舞蹈拆分学习工具，逐帧扒舞，逐段练习。限量招募早期体验官！">
+  <title>兔子扒舞 - 内测体验 | Dance Splitter Beta</title>
+  <meta name="description" content="一个程序媛做的扒舞App，AI自动拆分舞蹈动作，逐段慢放循环练习。招募第一批体验官！">
   <link rel="icon" href="https://files.manuscdn.com/user_upload_by_module/session_file/310519663364574797/QjortFsJPslmYRCC.png" type="image/png">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -52,7 +52,7 @@
     .lang-btn.active { background: linear-gradient(135deg, #8b5cf6, #7c3aed); color: #fff; box-shadow: 0 2px 8px rgba(139,92,246,0.4); }
 
     /* Header */
-    .header { text-align: center; padding: 48px 0 32px; }
+    .header { text-align: center; padding: 48px 0 24px; }
     .logo {
       width: 80px; height: 80px; border-radius: 20px;
       margin-bottom: 16px;
@@ -72,10 +72,30 @@
       border-radius: 20px; font-size: 13px; color: #fbbf24; font-weight: 500;
     }
 
+    /* Story section */
+    .story {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px; padding: 24px 20px;
+      margin-bottom: 28px;
+      backdrop-filter: blur(10px);
+    }
+    .story p {
+      font-size: 14px; color: #c9cdd4; line-height: 1.8;
+      margin-bottom: 12px;
+    }
+    .story p:last-child { margin-bottom: 0; }
+    .story .highlight {
+      color: #a78bfa; font-weight: 500;
+    }
+    .story .emoji-line {
+      font-size: 13px; color: #9ca3af; font-style: italic;
+    }
+
     /* Features */
     .features {
       display: grid; grid-template-columns: 1fr 1fr;
-      gap: 12px; margin-bottom: 32px;
+      gap: 12px; margin-bottom: 28px;
     }
     .feature-card {
       background: rgba(255, 255, 255, 0.05);
@@ -93,7 +113,7 @@
     .invite-card {
       background: linear-gradient(135deg, rgba(139, 92, 246, 0.12), rgba(236, 72, 153, 0.12));
       border: 1px solid rgba(139, 92, 246, 0.25);
-      border-radius: 20px; padding: 24px; text-align: center; margin-bottom: 32px;
+      border-radius: 20px; padding: 24px; text-align: center; margin-bottom: 28px;
     }
     .invite-label { font-size: 13px; color: #a78bfa; font-weight: 500; margin-bottom: 12px; }
     .invite-code {
@@ -114,24 +134,26 @@
     .copy-btn:active { transform: scale(0.95); background: rgba(139, 92, 246, 0.35); }
     .copy-btn.copied { background: rgba(34, 197, 94, 0.2); border-color: rgba(34, 197, 94, 0.4); color: #4ade80; }
 
-    /* Perks */
-    .perks { margin-bottom: 32px; }
-    .perk {
-      display: flex; align-items: center; gap: 14px;
+    /* What I need section */
+    .need-section { margin-bottom: 28px; }
+    .need-card {
+      display: flex; align-items: flex-start; gap: 14px;
       background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);
       border-radius: 14px; padding: 16px; margin-bottom: 10px;
       backdrop-filter: blur(10px);
     }
-    .perk-icon { font-size: 28px; flex-shrink: 0; }
-    .perk h4 { font-size: 14px; font-weight: 600; color: #e5e7eb; }
-    .perk p { font-size: 12px; color: #6b7280; margin-top: 2px; }
+    .need-icon { font-size: 24px; flex-shrink: 0; margin-top: 2px; }
+    .need-card h4 { font-size: 14px; font-weight: 600; color: #e5e7eb; }
+    .need-card p { font-size: 12px; color: #6b7280; margin-top: 2px; line-height: 1.5; }
 
-    /* Steps */
+    /* Section title */
     .section-title {
       font-size: 18px; font-weight: 700; margin-bottom: 16px;
       display: flex; align-items: center; gap: 8px;
     }
-    .steps { margin-bottom: 32px; }
+
+    /* Steps */
+    .steps { margin-bottom: 28px; }
     .step { display: flex; gap: 14px; margin-bottom: 16px; align-items: flex-start; }
     .step-num {
       flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%;
@@ -143,7 +165,7 @@
     .step-desc { font-size: 12px; color: #6b7280; margin-top: 2px; line-height: 1.5; }
 
     /* Download */
-    .download-section { margin-bottom: 32px; }
+    .download-section { margin-bottom: 28px; }
     .download-card {
       background: rgba(255, 255, 255, 0.05);
       border: 1px solid rgba(255, 255, 255, 0.1);
@@ -191,6 +213,7 @@
     .delay-3 { animation-delay: 0.3s; }
     .delay-4 { animation-delay: 0.4s; }
     .delay-5 { animation-delay: 0.5s; }
+    .delay-6 { animation-delay: 0.6s; }
 
     /* i18n hidden */
     .i18n-en { display: none !important; }
@@ -226,58 +249,121 @@
         <span class="i18n-en">Dance Splitter</span>
       </div>
       <div class="app-tagline">
-        <span class="i18n-zh">AI 智能舞蹈拆分学习</span>
-        <span class="i18n-en">AI-Powered Dance Learning Tool</span>
+        <span class="i18n-zh">受不了一帧一帧扒舞，我自己写了个App</span>
+        <span class="i18n-en">Tired of scrubbing frame by frame, so I built an app</span>
       </div>
       <div class="beta-badge">
-        <span>⭐</span>
-        <span class="i18n-zh">早期体验官招募中</span>
-        <span class="i18n-en">Beta Testers Wanted</span>
+        <span>🐰</span>
+        <span class="i18n-zh">第一批体验官招募中</span>
+        <span class="i18n-en">Recruiting First Beta Testers</span>
       </div>
     </div>
 
+    <!-- Developer Story -->
+    <div class="story animate delay-1">
+      <p class="i18n-zh">
+        学舞两年，最崩溃的事就是扒舞扣细节——播放、暂停、倒退、再播放、再暂停、倒退过头了又往前拖……一个八拍能反复拖进度条二三十次。
+      </p>
+      <p class="i18n-en">
+        After two years of learning dance, the most frustrating part is scrubbing through videos for details — play, pause, rewind, play again, pause again, overshoot, drag forward... one eight-count can mean dragging the progress bar 20-30 times.
+      </p>
+      <p class="i18n-zh">
+        作为一个<span class="highlight">程序媛</span>，有一天扒舞扒到崩溃的时候突然想：为什么不能写个App帮我自动拆动作？然后我下班后闷头做了一个月，终于搞出来了。
+      </p>
+      <p class="i18n-en">
+        As a <span class="highlight">developer who dances</span>, one day I snapped and thought: why can't I just build an app to split moves automatically? So I spent a month after work, and finally made it happen.
+      </p>
+      <p class="i18n-zh">
+        上传一个舞蹈视频，AI 会自动把整支舞拆成一个个小片段，每个片段就是一个动作。然后你可以逐段循环、慢放、镜像来学，不用再自己卡进度条了。
+      </p>
+      <p class="i18n-en">
+        Upload a dance video, and AI automatically splits it into individual moves. Then you can loop, slow down, or mirror each segment — no more fighting the progress bar.
+      </p>
+      <p class="emoji-line i18n-zh">
+        一个人做App最怕闭门造车，所以想找一些真正扒舞的姐妹帮我试试，看看到底好不好用 🙏
+      </p>
+      <p class="emoji-line i18n-en">
+        Building alone, I worry about missing the mark. So I'm looking for real dancers to try it out and tell me what works 🙏
+      </p>
+    </div>
+
     <!-- Features -->
-    <div class="features animate delay-1">
+    <div class="features animate delay-2">
       <div class="feature-card">
-        <div class="feature-icon">🔍</div>
-        <div class="feature-title i18n-zh">深度扒舞</div>
-        <div class="feature-title i18n-en">Deep Analysis</div>
-        <div class="feature-desc i18n-zh">200帧逐帧拆解</div>
-        <div class="feature-desc i18n-en">200-frame breakdown</div>
+        <div class="feature-icon">🤖</div>
+        <div class="feature-title i18n-zh">AI 拆动作</div>
+        <div class="feature-title i18n-en">AI Split</div>
+        <div class="feature-desc i18n-zh">上传视频自动拆分</div>
+        <div class="feature-desc i18n-en">Auto-split uploaded videos</div>
       </div>
       <div class="feature-card">
-        <div class="feature-icon">✂️</div>
-        <div class="feature-title i18n-zh">抠动作</div>
-        <div class="feature-title i18n-en">Precise Cuts</div>
-        <div class="feature-desc i18n-zh">0.1秒精准卡点</div>
-        <div class="feature-desc i18n-en">0.1s precision timing</div>
+        <div class="feature-icon">🔁</div>
+        <div class="feature-title i18n-zh">逐段学</div>
+        <div class="feature-title i18n-en">Loop & Learn</div>
+        <div class="feature-desc i18n-zh">单个动作循环慢放</div>
+        <div class="feature-desc i18n-en">Loop each move, slow it down</div>
       </div>
       <div class="feature-card">
-        <div class="feature-icon">🔄</div>
+        <div class="feature-icon">🪞</div>
+        <div class="feature-title i18n-zh">镜像模式</div>
+        <div class="feature-title i18n-en">Mirror Mode</div>
+        <div class="feature-desc i18n-zh">对着手机学不会反</div>
+        <div class="feature-desc i18n-en">No more left-right confusion</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🧩</div>
         <div class="feature-title i18n-zh">分组练</div>
         <div class="feature-title i18n-en">Group Practice</div>
-        <div class="feature-desc i18n-zh">自由组合片段</div>
-        <div class="feature-desc i18n-en">Combine segments freely</div>
+        <div class="feature-desc i18n-zh">自由组合片段连练</div>
+        <div class="feature-desc i18n-en">Combine segments to drill</div>
       </div>
-      <div class="feature-card">
-        <div class="feature-icon">📹</div>
-        <div class="feature-title i18n-zh">对比拍摄</div>
-        <div class="feature-title i18n-en">Compare Record</div>
-        <div class="feature-desc i18n-zh">边看边录，左右对比</div>
-        <div class="feature-desc i18n-en">Record & compare side-by-side</div>
+    </div>
+
+    <!-- What I need from you -->
+    <div class="need-section animate delay-2">
+      <div class="section-title">
+        <span class="i18n-zh">🙋 我需要你的帮助</span>
+        <span class="i18n-en">🙋 I Need Your Help</span>
+      </div>
+      <div class="need-card">
+        <div class="need-icon">💬</div>
+        <div>
+          <h4 class="i18n-zh">告诉我哪里不好用</h4>
+          <h4 class="i18n-en">Tell me what doesn't work</h4>
+          <p class="i18n-zh">哪怕是"这个按钮位置不顺手"这种小事也很有帮助</p>
+          <p class="i18n-en">Even small things like "this button feels off" really help</p>
+        </div>
+      </div>
+      <div class="need-card">
+        <div class="need-icon">💃</div>
+        <div>
+          <h4 class="i18n-zh">试试不同舞种</h4>
+          <h4 class="i18n-en">Try different dance styles</h4>
+          <p class="i18n-zh">我主要测了kpop和urban，jazz、waacking、街舞还没怎么试过</p>
+          <p class="i18n-en">I've mainly tested kpop & urban — jazz, waacking, hip-hop need more testing</p>
+        </div>
+      </div>
+      <div class="need-card">
+        <div class="need-icon">🐛</div>
+        <div>
+          <h4 class="i18n-zh">帮我抓bug</h4>
+          <h4 class="i18n-en">Help me catch bugs</h4>
+          <p class="i18n-zh">一个人开发难免有遗漏，遇到问题直接在App里反馈就行</p>
+          <p class="i18n-en">Solo dev = blind spots. Just tap Feedback in the app if something breaks</p>
+        </div>
       </div>
     </div>
 
     <!-- Invite Code -->
-    <div class="invite-card animate delay-2">
+    <div class="invite-card animate delay-3">
       <div class="invite-label">
-        <span class="i18n-zh">🎁 专属内测邀请码</span>
-        <span class="i18n-en">🎁 Exclusive Beta Invite Code</span>
+        <span class="i18n-zh">🎁 内测邀请码（感谢你帮我测试）</span>
+        <span class="i18n-en">🎁 Beta Invite Code (thanks for helping me test)</span>
       </div>
       <div class="invite-code" id="inviteCode">XIAOHONGSHU2026</div>
       <div class="invite-reward">
-        <span class="i18n-zh">兑换即得 <strong>50 次免费 AI 拆舞额度</strong> + ⭐ 初代扒舞官身份</span>
-        <span class="i18n-en">Redeem for <strong>50 free AI splits</strong> + ⭐ Founding Dancer badge</span>
+        <span class="i18n-zh">输入后获得 <strong>50 次免费 AI 拆舞</strong> + 初代扒舞官身份</span>
+        <span class="i18n-en">Redeem for <strong>50 free AI splits</strong> + Founding Dancer badge</span>
       </div>
       <button class="copy-btn" id="copyBtn" onclick="copyCode()">
         <span class="i18n-zh">复制邀请码</span>
@@ -285,80 +371,45 @@
       </button>
     </div>
 
-    <!-- Beta Perks -->
-    <div class="perks animate delay-2">
+    <!-- How to join -->
+    <div class="steps animate delay-4">
       <div class="section-title">
-        <span class="i18n-zh">🎉 内测福利</span>
-        <span class="i18n-en">🎉 Beta Perks</span>
-      </div>
-      <div class="perk">
-        <div class="perk-icon">🎁</div>
-        <div>
-          <h4 class="i18n-zh">50 次免费 AI 精细拆解</h4>
-          <h4 class="i18n-en">50 Free AI Precise Splits</h4>
-          <p class="i18n-zh">加入即送，正式上线后价值 ¥64.5</p>
-          <p class="i18n-en">Free upon joining, worth $29.95 after launch</p>
-        </div>
-      </div>
-      <div class="perk">
-        <div class="perk-icon">👑</div>
-        <div>
-          <h4 class="i18n-zh">「初代扒舞官」专属标签</h4>
-          <h4 class="i18n-en">"Founding Dancer" Exclusive Badge</h4>
-          <p class="i18n-zh">永久展示在个人主页，彰显元老身份</p>
-          <p class="i18n-en">Permanently displayed on your profile</p>
-        </div>
-      </div>
-      <div class="perk">
-        <div class="perk-icon">💬</div>
-        <div>
-          <h4 class="i18n-zh">优先反馈通道</h4>
-          <h4 class="i18n-en">Priority Feedback Channel</h4>
-          <p class="i18n-zh">直接与开发团队沟通，你的建议优先实现</p>
-          <p class="i18n-en">Direct access to dev team, your ideas come first</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- How to use -->
-    <div class="steps animate delay-3">
-      <div class="section-title">
-        <span class="i18n-zh">📋 三步开始扒舞</span>
-        <span class="i18n-en">📋 Get Started in 3 Steps</span>
+        <span class="i18n-zh">📋 怎么参加内测</span>
+        <span class="i18n-en">📋 How to Join</span>
       </div>
       <div class="step">
         <div class="step-num">1</div>
         <div class="step-content">
-          <div class="step-title i18n-zh">下载安装 App</div>
-          <div class="step-title i18n-en">Download & Install</div>
-          <div class="step-desc i18n-zh">Android 用户直接下载 APK 安装<br>iOS 用户通过 TestFlight 安装</div>
-          <div class="step-desc i18n-en">Android: download APK directly<br>iOS: install via TestFlight</div>
+          <div class="step-title i18n-zh">下载 App</div>
+          <div class="step-title i18n-en">Download the App</div>
+          <div class="step-desc i18n-zh">安卓直接下载 APK 安装<br>iOS 通过 TestFlight 安装（即将开放）</div>
+          <div class="step-desc i18n-en">Android: download APK directly<br>iOS: via TestFlight (coming soon)</div>
         </div>
       </div>
       <div class="step">
         <div class="step-num">2</div>
         <div class="step-content">
-          <div class="step-title i18n-zh">手机号登录 + 输入邀请码</div>
-          <div class="step-title i18n-en">Sign In + Enter Invite Code</div>
-          <div class="step-desc i18n-zh">手机号收到验证码 → 设置页输入邀请码 → 获得 50 次免费额度 + 初代扒舞官身份</div>
-          <div class="step-desc i18n-en">Receive SMS code → Enter invite code in Settings → Get 50 free splits + Founding Dancer badge</div>
+          <div class="step-title i18n-zh">手机号登录</div>
+          <div class="step-title i18n-en">Sign in with phone number</div>
+          <div class="step-desc i18n-zh">输入手机号 → 收到短信验证码 → 登录成功</div>
+          <div class="step-desc i18n-en">Enter phone → receive SMS code → you're in</div>
         </div>
       </div>
       <div class="step">
         <div class="step-num">3</div>
         <div class="step-content">
-          <div class="step-title i18n-zh">上传视频，AI 自动拆舞</div>
-          <div class="step-title i18n-en">Upload Video, AI Splits It</div>
-          <div class="step-desc i18n-zh">从相册选一段舞蹈视频 → 点击 AI 拆分 → 逐段慢放练习</div>
-          <div class="step-desc i18n-en">Pick a dance video → Tap AI Split → Practice each move slowly</div>
+          <div class="step-title i18n-zh">设置页输入邀请码</div>
+          <div class="step-title i18n-en">Enter invite code in Settings</div>
+          <div class="step-desc i18n-zh">获得 50 次免费额度，然后就可以上传视频开始扒舞了</div>
+          <div class="step-desc i18n-en">Get 50 free splits, then upload a video and start learning</div>
         </div>
       </div>
     </div>
 
     <!-- Download -->
-    <div class="download-section animate delay-4">
+    <div class="download-section animate delay-5">
       <div class="section-title">
-        <span class="i18n-zh">📥 下载安装</span>
+        <span class="i18n-zh">📥 下载</span>
         <span class="i18n-en">📥 Download</span>
       </div>
 
@@ -372,20 +423,14 @@
           </span>
         </div>
         <ul class="download-steps">
-          <li class="i18n-zh">点击下方按钮下载 APK 文件</li>
-          <li class="i18n-en">Click button below to download APK</li>
-          <li class="i18n-zh">打开文件，允许安装未知来源应用</li>
-          <li class="i18n-en">Open file, allow install from unknown sources</li>
-          <li class="i18n-zh">安装完成后打开 App</li>
-          <li class="i18n-en">Open app after installation</li>
+          <li class="i18n-zh">点击下方按钮下载 APK</li>
+          <li class="i18n-en">Click below to download APK</li>
+          <li class="i18n-zh">安装时如果提示"未知来源"，点允许就行</li>
+          <li class="i18n-en">If prompted about unknown sources, just allow it</li>
         </ul>
         <a class="download-btn" id="androidBtn" href="#" onclick="trackClick('android_apk')">
           <span class="i18n-zh">下载 Android 安装包</span>
           <span class="i18n-en">Download Android APK</span>
-        </a>
-        <a class="download-btn secondary" style="margin-top:8px" href="#" onclick="trackClick('google_play')">
-          <span class="i18n-zh">Google Play 内测（需 Google 账号）</span>
-          <span class="i18n-en">Google Play Beta (Google account required)</span>
         </a>
       </div>
 
@@ -399,68 +444,66 @@
           </span>
         </div>
         <ul class="download-steps">
-          <li class="i18n-zh">需要先安装 Apple 官方 TestFlight App</li>
-          <li class="i18n-en">Install Apple TestFlight app first</li>
-          <li class="i18n-zh">点击下方按钮加入内测</li>
-          <li class="i18n-en">Click button below to join beta</li>
-          <li class="i18n-zh">在 TestFlight 中安装兔子扒舞</li>
-          <li class="i18n-en">Install Dance Splitter in TestFlight</li>
+          <li class="i18n-zh">需要先装 Apple TestFlight</li>
+          <li class="i18n-en">Install Apple TestFlight first</li>
+          <li class="i18n-zh">苹果审核中，开放后会更新链接</li>
+          <li class="i18n-en">Under Apple review, link will be updated</li>
         </ul>
         <a class="download-btn secondary" href="#" onclick="trackClick('testflight')">
-          <span class="i18n-zh">加入 TestFlight 内测</span>
-          <span class="i18n-en">Join TestFlight Beta</span>
+          <span class="i18n-zh">TestFlight 内测（审核中）</span>
+          <span class="i18n-en">TestFlight Beta (Under Review)</span>
         </a>
       </div>
     </div>
 
     <!-- FAQ -->
-    <div class="faq animate delay-5">
+    <div class="faq animate delay-6">
       <div class="section-title">
-        <span class="i18n-zh">❓ 常见问题</span>
-        <span class="i18n-en">❓ FAQ</span>
+        <span class="i18n-zh">❓ 你可能想问</span>
+        <span class="i18n-en">❓ You Might Ask</span>
       </div>
 
       <div class="faq-item">
-        <div class="faq-q i18n-zh">Q: 内测期间收费吗？</div>
+        <div class="faq-q i18n-zh">Q: 内测收费吗？</div>
         <div class="faq-q i18n-en">Q: Is the beta free?</div>
-        <div class="faq-a i18n-zh">A: 完全免费！输入邀请码即可获得 50 次 AI 拆舞额度，每天签到还能领额外次数。</div>
-        <div class="faq-a i18n-en">A: Completely free! Enter invite code for 50 AI splits, plus daily check-in bonuses.</div>
+        <div class="faq-a i18n-zh">A: 内测期间完全免费，输入邀请码就有 50 次 AI 拆舞额度。</div>
+        <div class="faq-a i18n-en">A: Completely free during beta. Enter invite code for 50 AI splits.</div>
       </div>
 
       <div class="faq-item">
-        <div class="faq-q i18n-zh">Q: 支持什么格式的视频？</div>
-        <div class="faq-q i18n-en">Q: What video formats are supported?</div>
-        <div class="faq-a i18n-zh">A: 支持手机相册中的 MP4、MOV 等常见格式，最长 5 分钟，最大 100MB。</div>
-        <div class="faq-a i18n-en">A: MP4, MOV and common formats from your gallery. Max 5 minutes, 100MB.</div>
+        <div class="faq-q i18n-zh">Q: 什么视频都能拆吗？</div>
+        <div class="faq-q i18n-en">Q: Does it work with any video?</div>
+        <div class="faq-a i18n-zh">A: 支持手机相册里的 MP4、MOV 等常见格式，最长 5 分钟。舞蹈类视频效果最好，AI 是按舞蹈动作来拆的。</div>
+        <div class="faq-a i18n-en">A: MP4, MOV and common formats, up to 5 minutes. Works best with dance videos — the AI splits by dance moves.</div>
       </div>
 
       <div class="faq-item">
-        <div class="faq-q i18n-zh">Q: Android 安装提示"不安全"怎么办？</div>
-        <div class="faq-q i18n-en">Q: Android shows "unsafe" warning?</div>
-        <div class="faq-a i18n-zh">A: 这是因为 APK 不是从应用商店下载的，属于正常提示。点击"仍然安装"即可，我们的 App 不含任何恶意代码。</div>
-        <div class="faq-a i18n-en">A: Normal for APKs not from Play Store. Tap "Install anyway" — our app is completely safe.</div>
+        <div class="faq-q i18n-zh">Q: AI 拆得准吗？</div>
+        <div class="faq-q i18n-en">Q: How accurate is the AI splitting?</div>
+        <div class="faq-a i18n-zh">A: 说实话还不完美，kpop 和 urban 测得比较多，效果还不错。其他舞种可能需要调整，这也是我需要大家帮忙测试的原因。</div>
+        <div class="faq-a i18n-en">A: Honestly, not perfect yet. Kpop and urban work well since I've tested those most. Other styles may need tuning — that's exactly why I need your help testing.</div>
       </div>
 
       <div class="faq-item">
         <div class="faq-q i18n-zh">Q: 遇到问题怎么反馈？</div>
-        <div class="faq-q i18n-en">Q: How to report issues?</div>
-        <div class="faq-a i18n-zh">A: App 内设置页有"意见反馈"入口，也可以在小红书评论区留言，我们会及时回复。</div>
-        <div class="faq-a i18n-en">A: Use "Feedback" in app Settings, or comment on our social media posts.</div>
+        <div class="faq-q i18n-en">Q: How to give feedback?</div>
+        <div class="faq-a i18n-zh">A: App 设置页有"意见反馈"，也可以在小红书评论区直接跟我说。我一个人开发，但每条反馈都会认真看。</div>
+        <div class="faq-a i18n-en">A: Use "Feedback" in app Settings, or comment on my posts. I'm a solo dev but I read every single message.</div>
       </div>
 
       <div class="faq-item">
-        <div class="faq-q i18n-zh">Q: "初代扒舞官"有什么特权？</div>
-        <div class="faq-q i18n-en">Q: What does "Founding Dancer" get?</div>
-        <div class="faq-a i18n-zh">A: 专属金色徽章、50 次免费额度、优先体验新功能、正式上线后永久保留身份和额度。</div>
-        <div class="faq-a i18n-en">A: Exclusive gold badge, 50 free splits, early access to new features, permanent status after launch.</div>
+        <div class="faq-q i18n-zh">Q: 安装提示"不安全"？</div>
+        <div class="faq-q i18n-en">Q: "Unsafe" warning on install?</div>
+        <div class="faq-a i18n-zh">A: 因为不是从应用商店下载的，系统会有提示，点"仍然安装"就行。App 代码都是我自己写的，不会有安全问题。</div>
+        <div class="faq-a i18n-en">A: Normal for APKs outside Play Store. Tap "Install anyway" — I wrote every line of code myself, it's safe.</div>
       </div>
     </div>
 
     <!-- Footer -->
     <div class="footer">
       <div class="footer-text">
-        <span class="i18n-zh">兔子扒舞 v1.0 内测版 · 2026</span>
-        <span class="i18n-en">Dance Splitter v1.0 Beta · 2026</span>
+        <span class="i18n-zh">兔子扒舞 · 一个程序媛的扒舞工具 · 2026</span>
+        <span class="i18n-en">Dance Splitter · Built by a dancer who codes · 2026</span>
       </div>
       <div class="footer-links">
         <a href="https://rabbit-dance.up.railway.app/privacy" target="_blank" class="i18n-zh">隐私政策</a>
@@ -509,27 +552,23 @@
         var API = 'https://rabbit-dance.up.railway.app/api/beta-log';
         navigator.sendBeacon
           ? navigator.sendBeacon(API, new Blob([JSON.stringify(payload)],{type:'application/json'}))
-          : fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload),keepalive:true}).catch(function(){});
+          : fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}).catch(function(){});
       } catch(e){}
     }
 
-    // Track page view
     log('page_view', { url: location.href });
 
-    // Track scroll depth
     window.addEventListener('scroll', function() {
       var pct = Math.round((window.scrollY + window.innerHeight) / document.body.scrollHeight * 100);
       if (pct > maxScroll) { maxScroll = pct; if (maxScroll % 25 === 0) log('scroll', { pct: maxScroll }); }
     });
 
-    // Track page leave
     window.addEventListener('visibilitychange', function() {
       if (document.visibilityState === 'hidden') {
         log('page_leave', { duration: Math.round((Date.now()-T0)/1000), maxScroll: maxScroll });
       }
     });
 
-    // Track errors
     window.addEventListener('error', function(e) {
       log('js_error', { msg: e.message, src: e.filename, line: e.lineno });
     });
@@ -545,7 +584,6 @@
     (function() {
       var saved = localStorage.getItem('beta-lang');
       if (saved) { setLang(saved); return; }
-      // Default to Chinese; only switch to English if user explicitly clicks
     })();
 
     // ─── Actions ───
@@ -554,10 +592,8 @@
       var isZh = document.documentElement.lang !== 'en';
       if (platform === 'android_apk') {
         showToast(isZh ? 'APK 下载链接即将开放，请先复制邀请码 🎁' : 'APK download coming soon, copy invite code first 🎁');
-      } else if (platform === 'google_play') {
-        showToast(isZh ? 'Google Play 内测即将开放' : 'Google Play beta coming soon');
       } else if (platform === 'testflight') {
-        showToast(isZh ? 'TestFlight 链接即将开放，请先复制邀请码 🎁' : 'TestFlight link coming soon, copy invite code first 🎁');
+        showToast(isZh ? 'TestFlight 审核中，开放后会更新' : 'TestFlight under review, will update soon');
       }
     }
 
